@@ -1,9 +1,9 @@
-FROM alpine:edge
-MAINTAINER baeldung.com
-RUN apk add --no-cache openjdk8
-COPY files/UnlimitedJCEPolicyJDK8/* \
-  /usr/lib/jvm/java-1.8-openjdk/jre/lib/security/
-VOLUME /tmp
-ARG JAR_FILE
-ADD ${JAR_FILE} app.jar
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
+FROM frolvlad/alpine-oraclejdk8
+MAINTAINER Conan Chen "https://github.com/conanchen"
+COPY build/libs/gedit-cloud-hello-0.0.1-SNAPSHOT.jar /opt/gedit-cloud/lib/
+ENV SPRING_APPLICATION_JSON='{"spring": {"cloud": {"config": {"server": \
+    {"git": {"uri": "/var/lib/spring-cloud/config-repo", "clone-on-start": true}}}}}}'
+ENTRYPOINT ["/usr/bin/java"]
+CMD ["-jar", "/opt/gedit-cloud/lib/gedit-cloud-hello-0.0.1-SNAPSHOT.jar"]
+VOLUME /var/lib/gedit-cloud/hello-repo
+EXPOSE 8088 8980
