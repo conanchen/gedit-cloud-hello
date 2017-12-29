@@ -1,11 +1,7 @@
 FROM frolvlad/alpine-oraclejdk8
 LABEL maintainer="https://github.com/conanchen"
-RUN find . -type f
-RUN ls -R .
-COPY gedit-cloud-hello-0.0.1-SNAPSHOT.jar /opt/gedit-cloud/lib/
-ENV SPRING_APPLICATION_JSON='{"spring": {"cloud": {"config": {"server": \
-    {"git": {"uri": "/var/lib/spring-cloud/config-repo", "clone-on-start": true}}}}}}'
-ENTRYPOINT ["/usr/bin/java"]
-CMD ["-jar", "/opt/gedit-cloud/lib/gedit-cloud-hello-0.0.1-SNAPSHOT.jar"]
-VOLUME /var/lib/gedit-cloud/hello-repo
+VOLUME /tmp
+ARG JAR_FILE
+ADD ${JAR_FILE} app.jar
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
 EXPOSE 8088 8980
