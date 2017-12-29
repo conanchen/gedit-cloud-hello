@@ -1,6 +1,6 @@
 FROM frolvlad/alpine-oraclejdk8
 LABEL maintainer="https://github.com/conanchen"
-RUN find . -name gedit-cloud-hello* -print
+RUN find . -type f
 RUN ls -R .
 COPY gedit-cloud-hello-0.0.1-SNAPSHOT.jar /opt/gedit-cloud/lib/
 ENV SPRING_APPLICATION_JSON='{"spring": {"cloud": {"config": {"server": \
