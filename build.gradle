@@ -64,13 +64,13 @@ dependencies {
     compile("io.grpc:grpc-services:$GRPC_VERSION")
     compile("io.grpc:grpc-netty:$GRPC_VERSION")
 
-    compile("com.graphql-java:graphql-spring-boot-starter:3.6.0") {
+    compile("com.graphql-java:graphql-java-tools:4.3.0") {
         exclude group: 'org.slf4j', module: 'log4j-over-slf4j'
     }
-    compile("com.graphql-java:graphql-java-tools:3.2.0") {
+    compile("com.graphql-java:graphql-spring-boot-starter:3.9.2") {
         exclude group: 'org.slf4j', module: 'log4j-over-slf4j'
     }
-    compile("com.graphql-java:graphiql-spring-boot-starter:3.6.0") {
+    compile("com.graphql-java:graphiql-spring-boot-starter:3.9.2") {
         exclude group: 'org.slf4j', module: 'log4j-over-slf4j'
     }
 
