@@ -88,6 +88,9 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-actuator") {
         exclude group: 'org.slf4j', module: 'log4j-over-slf4j'
     }
+    compile("org.springframework.boot:spring-boot-starter-data-mongodb"){
+        exclude group: 'org.slf4j', module: 'log4j-over-slf4j'
+    }
     testCompile('org.springframework.boot:spring-boot-starter-test')
 
 }

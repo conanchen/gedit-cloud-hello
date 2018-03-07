@@ -1,11 +1,13 @@
 package com.github.conanchen.gedit.hello.grpc;
 
 import com.github.conanchen.gedit.common.grpc.Status;
+import com.github.conanchen.gedit.hello.graphql.mongo.CustomerRepository;
 import com.google.gson.Gson;
 import io.grpc.stub.StreamObserver;
 import org.lognet.springboot.grpc.GRpcService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -18,6 +20,11 @@ public class HelloService extends HelloGrpc.HelloImplBase {
     private static final Gson gson = new Gson();
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
+
+    @Autowired
+    private CustomerRepository customerRepository;
+
+
     @Override
     public void sayHello(HelloRequest request, StreamObserver<HelloReply> responseObserver) {
         final HelloReply.Builder replyBuilder = HelloReply.newBuilder()
@@ -26,7 +33,8 @@ public class HelloService extends HelloGrpc.HelloImplBase {
                         .setDetails("Hello很高兴回复你，你的hello很温暖。")
                         .build())
                 .setUuid(UUID.randomUUID().toString())
-                .setMessage(String.format("Hello %s@%s ", request.getName(), dateFormat.format(System.currentTimeMillis())))
+                .setMessage(String.format("Hello %s@%s customerRepository=%s", request.getName(),
+                        dateFormat.format(System.currentTimeMillis()),customerRepository.toString()))
                 .setCreated(System.currentTimeMillis())
                 .setLastUpdated(System.currentTimeMillis());
         HelloReply helloReply = replyBuilder.build();
