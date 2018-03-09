@@ -10,17 +10,18 @@
 ### 查询列表
 #### step1：调用API
 ```graphql
-query recentPosts{
-    recentPosts(count: 10, offset: 0) {
-        id
-        title
-        category
-        author {
-            id
-            name
-            thumbnail
-        }
+query recentPosts {
+  recentPosts(count: 100, offset: 0) {
+    id
+    title
+    text
+    category
+    author {
+      id
+      name
+      thumbnail
     }
+  }
 }
 ```
 #### step2：查看结果

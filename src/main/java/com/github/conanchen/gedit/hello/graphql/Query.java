@@ -19,8 +19,7 @@ public class Query implements GraphQLQueryResolver {
     }
 
     public List<Post> recentPosts(int count, int offset) {
-        String a = customerRepository.toString();
-        System.out.println("customerRepository="+customerRepository.toString());
+        System.out.println("customerRepository=" + customerRepository.toString());
         return postDao.getRecentPosts(count, offset);
     }
 }

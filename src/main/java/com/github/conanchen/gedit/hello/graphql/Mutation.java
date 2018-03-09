@@ -1,11 +1,18 @@
 package com.github.conanchen.gedit.hello.graphql;
 
 import com.coxautodev.graphql.tools.GraphQLMutationResolver;
+import com.github.conanchen.gedit.hello.graphql.mongo.CustomerRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.UUID;
 
+@Component
 public class Mutation implements GraphQLMutationResolver {
     private PostDao postDao;
+
+    @Autowired
+    private CustomerRepository customerRepository;
 
     public Mutation(PostDao postDao) {
         this.postDao = postDao;
@@ -16,7 +23,7 @@ public class Mutation implements GraphQLMutationResolver {
         post.setId(UUID.randomUUID()
                 .toString());
         post.setTitle(title);
-        post.setText(text);
+        post.setText(text + " customerRepository="+customerRepository.toString());
         post.setCategory(category);
         post.setAuthorId(author);
         postDao.savePost(post);
