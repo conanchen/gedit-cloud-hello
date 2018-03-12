@@ -11,20 +11,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyEmitter;
 
-import javax.validation.Valid;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.util.Date;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.Future;
 
 @RestController
 @EnableAutoConfiguration
 public class HelloController {
     private final static Gson gson = new Gson();
-    //
-//    @Autowired
-//    private WordRepository wordRepository;
+
     @Value("${gedit.docker.enabled}")
     Boolean insideDocker = false;
 
@@ -44,14 +39,14 @@ public class HelloController {
                         DateFormat.getInstance().format(new Date()), customerFirstNames, insideDocker);
     }
 
-    @RequestMapping(value = "/hellogrpc")
-    public ResponseBodyEmitter helloGrpc() {
+    @RequestMapping(value = "/helloasyncgrpc")
+    public ResponseBodyEmitter helloAsyncGrpc() {
         ResponseBodyEmitter emitter = new ResponseBodyEmitter();
-        helloGrpcClient.sayHello("ResponseBodyEmitter-hellogrpc", new HelloGrpcClient.HelloCallback() {
+        helloGrpcClient.sayAsyncHello("helloasyncgrpc", new HelloGrpcClient.HelloCallback() {
             @Override
             public void onHelloReply(HelloReply helloReply) {
                 try {
-                    emitter.send(helloReply.getMessage());
+                    emitter.send(helloReply.getMessage() + "\n emitter=" + emitter.toString());
                     emitter.complete();
                 } catch (IOException e) {
                     e.printStackTrace();

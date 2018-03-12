@@ -41,11 +41,11 @@ public class HelloGrpcClient {
                 .build();
     }
 
-    public void sayHello(String name, HelloCallback callback) {
+    public void sayAsyncHello(String name, HelloCallback callback) {
         ManagedChannel channel = getManagedChannel();
 
         ConnectivityState connectivityState = channel.getState(true);
-        System.out.println(String.format("sayHello connectivityState = [%s]", gson.toJson(connectivityState)));
+        System.out.println(String.format("sayAsyncHello connectivityState = [%s]", gson.toJson(connectivityState)));
 
         HealthGrpc.HealthStub healthStub = HealthGrpc.newStub(channel);
         HelloGrpc.HelloStub helloStub = HelloGrpc.newStub(channel);
@@ -55,13 +55,13 @@ public class HelloGrpcClient {
                     @Override
                     public void onNext(HelloReply helloReply) {
 
-                        System.out.println(String.format("sayHello got helloReply %s:%s gson=[%s]", helloReply.getUuid(), helloReply.getMessage(), gson.toJson(helloReply)));
+                        System.out.println(String.format("sayAsyncHello got helloReply %s:%s gson=[%s]", helloReply.getUuid(), helloReply.getMessage(), gson.toJson(helloReply)));
                         callback.onHelloReply(helloReply);
                     }
 
                     @Override
                     public void onError(Throwable t) {
-                        logger.info(String.format("helloStub.sayHello() onError %s", t.getMessage()));
+                        logger.info(String.format("helloStub.sayAsyncHello() onError %s", t.getMessage()));
                         callback.onHelloReply(HelloReply.newBuilder().setStatus(Status.newBuilder()
                                 .setCode(com.github.conanchen.gedit.common.grpc.Status.Code.UNAVAILABLE)
                                 .setDetails("Hello API 错误：可能网络不通或服务器错误")
@@ -70,7 +70,7 @@ public class HelloGrpcClient {
 
                     @Override
                     public void onCompleted() {
-                        logger.info(String.format("helloStub.sayHello() onCompleted"));
+                        logger.info(String.format("helloStub.sayAsyncHello() onCompleted"));
                     }
                 });
 
@@ -80,20 +80,20 @@ public class HelloGrpcClient {
                     public void onNext(HealthCheckResponse value) {
 
                         if (value.getStatus() == HealthCheckResponse.ServingStatus.SERVING) {
-                            System.out.println(String.format("sayHello healthStub.check onNext YES! ServingStatus.SERVING name = [%s]", name));
+                            System.out.println(String.format("sayAsyncHello healthStub.check onNext YES! ServingStatus.SERVING name = [%s]", name));
                         } else {
-                            System.out.println(String.format("sayHello healthStub.check onNext NOT! ServingStatus.SERVING name = [%s]", name));
+                            System.out.println(String.format("sayAsyncHello healthStub.check onNext NOT! ServingStatus.SERVING name = [%s]", name));
                         }
                     }
 
                     @Override
                     public void onError(Throwable t) {
-                        System.out.println(String.format("sayHello healthStub.check onError grpc service check health\n%s", t.getMessage()));
+                        System.out.println(String.format("sayAsyncHello healthStub.check onError grpc service check health\n%s", t.getMessage()));
                     }
 
                     @Override
                     public void onCompleted() {
-                        System.out.println(String.format("sayHello healthStub.check onCompleted grpc service check health\n%s", ""));
+                        System.out.println(String.format("sayAsyncHello healthStub.check onCompleted grpc service check health\n%s", ""));
                     }
                 });
 

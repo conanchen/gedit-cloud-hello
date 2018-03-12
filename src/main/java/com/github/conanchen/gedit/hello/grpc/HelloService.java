@@ -39,7 +39,7 @@ public class HelloService extends HelloGrpc.HelloImplBase {
                 .setLastUpdated(System.currentTimeMillis());
         HelloReply helloReply = replyBuilder.build();
         responseObserver.onNext(helloReply);
-        log.info(String.format("HelloGrpcClient.sayHello() %s:%s gson=%s", helloReply.getUuid(), helloReply.getMessage(), gson.toJson(helloReply)));
+        log.info(String.format("HelloService.sayHello() %s:%s gson=%s", helloReply.getUuid(), helloReply.getMessage(), gson.toJson(helloReply)));
         responseObserver.onCompleted();
     }
 
