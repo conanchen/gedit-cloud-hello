@@ -35,7 +35,7 @@ public class HelloGrpcClient {
 
     private ManagedChannel getManagedChannel() {
         return NettyChannelBuilder
-                .forAddress("127.0.0.1", 8980)
+                .forAddress("127.0.0.1", 8900)
                 .usePlaintext(true)
                 //                .keepAliveTime(60, TimeUnit.SECONDS)
                 .build();
