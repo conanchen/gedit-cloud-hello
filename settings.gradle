@@ -1,0 +1,4 @@
+rootProject.name = 'gedit-cloud-hello'
+include 'gedit-cloud-hello-graphql'
+include 'gedit-cloud-hellogrpc1'
+include 'gedit-cloud-hellogrpc2'
