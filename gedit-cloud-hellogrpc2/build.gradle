@@ -1,5 +1,5 @@
 group = 'conanchen'
-version '0.0.1-SNAPSHOT'
+version = '0.0.1-SNAPSHOT'
 
 ext { springBootVersion = '1.5.9.RELEASE' }
 
@@ -10,10 +10,6 @@ apply plugin: 'org.springframework.boot'
 apply plugin: 'com.palantir.docker'
 
 sourceCompatibility = 1.8
-
-// This is used as the docker image prefix (org)
-group = 'conanchen'
-version = '0.0.1-SNAPSHOT'
 
 jar {
     baseName = 'gedit-cloud-hello'
