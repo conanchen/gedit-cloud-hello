@@ -7,10 +7,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
-public class Grpc1HelloApplication {
+public class HelloGrpc1Application {
 
     public static void main(String[] args) {
-        SpringApplication.run(Grpc1HelloApplication.class, args);
+        SpringApplication.run(HelloGrpc1Application.class, args);
     }
 
     @Bean

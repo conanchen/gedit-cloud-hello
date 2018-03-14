@@ -9,7 +9,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class Grpc1HelloApplicationTests {
+public class HelloGrpc1ApplicationTests {
 	@Autowired
 	private HelloGrpcClient helloGrpcClient;
 
