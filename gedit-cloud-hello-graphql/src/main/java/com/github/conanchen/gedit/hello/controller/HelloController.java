@@ -1,6 +1,6 @@
 package com.github.conanchen.gedit.hello.controller;
 
-import com.github.conanchen.gedit.hello.client.HelloGrpcClient;
+import com.github.conanchen.gedit.hello.client.HelloGrpc1Client;
 import com.github.conanchen.gedit.hello.graphql.mongo.Customer;
 import com.github.conanchen.gedit.hello.graphql.mongo.CustomerRepository;
 import com.github.conanchen.gedit.hello.grpc.HelloReply;
@@ -29,7 +29,7 @@ public class HelloController {
     private CustomerRepository customerRepository;
 
     @Autowired
-    private HelloGrpcClient helloGrpcClient;
+    private HelloGrpc1Client helloGrpc1Client;
 
 
     @RequestMapping(value = "/hello")
@@ -43,7 +43,7 @@ public class HelloController {
     @RequestMapping(value = "/helloasyncgrpc")
     public ResponseBodyEmitter helloAsyncGrpc() {
         ResponseBodyEmitter emitter = new ResponseBodyEmitter();
-        helloGrpcClient.sayAsyncHello("helloasyncgrpc", new HelloGrpcClient.HelloCallback() {
+        helloGrpc1Client.sayAsyncHello("helloasyncgrpc", new HelloGrpc1Client.HelloCallback() {
             @Override
             public void onHelloReply(HelloReply helloReply) {
                 try {

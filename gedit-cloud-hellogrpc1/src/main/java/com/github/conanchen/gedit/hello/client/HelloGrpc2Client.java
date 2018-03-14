@@ -23,7 +23,7 @@ public class HelloGrpc2Client {
 
     private final static String TAG = HelloGrpc2Client.class.getSimpleName();
 
-    @Value("${hellogrpc2.port}")
+    @Value("${hellogrpc.port}")
     private int port;
 
     public interface HelloCallback {

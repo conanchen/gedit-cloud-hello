@@ -11,7 +11,7 @@ buildscript {
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-        classpath("gradle.plugin.com.palantir.gradle.docker:gradle-docker:${gradleDockerVersion}")
+        //classpath("gradle.plugin.com.palantir.gradle.docker:gradle-docker:${gradleDockerVersion}")
     }
 }
 
@@ -26,16 +26,6 @@ sourceCompatibility = 1.8
 group = 'conanchen'
 version = '0.0.1-SNAPSHOT'
 
-jar {
-    baseName = 'gedit-cloud-hello'
-}
-
-// tag::task[]
-docker {
-    name "${project.group}/${jar.baseName}"
-    files jar.archivePath
-    buildArgs(['JAR_FILE': "${jar.archiveName}"])
-}// end::task[]
 
 repositories {
     mavenCentral()
@@ -49,51 +39,5 @@ configurations.all {
 
 
 dependencies {
-
-    compile 'com.github.conanchen.gedit-api-grpc:grpc-java:master-SNAPSHOT'
-
-    compile("org.lognet:grpc-spring-boot-starter:$GRPC_STARTER_VERSION") {
-        exclude group: 'org.slf4j', module: 'log4j-over-slf4j'
-//        exclude group: 'io.grpc', module: 'grpc-protobuf'
-//        exclude group: 'io.grpc', module: 'grpc-services'
-//        exclude group: 'io.grpc', module: 'grpc-netty'
-    }
-
-//    compile("io.grpc:grpc-protobuf:$GRPC_VERSION")
-//    compile("io.grpc:grpc-services:$GRPC_VERSION")
-//    compile("io.grpc:grpc-netty:$GRPC_VERSION")
-
-    compile("com.graphql-java:graphql-java-tools:4.3.0") {
-        exclude group: 'org.slf4j', module: 'log4j-over-slf4j'
-    }
-    compile("com.graphql-java:graphql-spring-boot-starter:3.9.2") {
-        exclude group: 'org.slf4j', module: 'log4j-over-slf4j'
-    }
-    compile("com.graphql-java:graphiql-spring-boot-starter:3.9.2") {
-        exclude group: 'org.slf4j', module: 'log4j-over-slf4j'
-    }
-
-//    compile("org.springframework.boot:spring-boot-starter") {
-//        force true
-//        exclude group: 'org.slf4j', module: 'log4j-over-slf4j'
-//    }
-//    compile("org.springframework.boot:spring-boot-starter-logging") {
-//        force true
-//        exclude group: 'org.slf4j', module: 'log4j-over-slf4j'
-//    }
-    compile("org.springframework.boot:spring-boot-starter-web") {
-        exclude group: 'org.slf4j', module: 'log4j-over-slf4j'
-    }
-    compile("org.springframework.boot:spring-boot-starter-actuator") {
-        exclude group: 'org.slf4j', module: 'log4j-over-slf4j'
-    }
-    compile("org.springframework.boot:spring-boot-starter-data-mongodb") {
-        exclude group: 'org.slf4j', module: 'log4j-over-slf4j'
-    }
-    compile("org.springframework.boot:spring-boot-devtools") {
-//        优点：简单，支持Spring-boot项目，支持成员级别的修改热部署。
-//        缺点：只支持spring-boot项目。? 貌似不起作用？
-        exclude group: 'org.slf4j', module: 'log4j-over-slf4j'
-    }
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }

@@ -28,7 +28,6 @@ public class HelloGrp1Service extends HelloGrpc.HelloImplBase {
             public void onHelloReply(HelloReply helloReply) {
                 responseObserver.onNext(HelloReply.newBuilder(helloReply)
                         .setMessage("hello grpc1," + helloReply.getMessage())
-
                         .build());
                 responseObserver.onCompleted();
                 log.info("hello grpc1 invoked");
