@@ -1,7 +1,7 @@
 package com.github.conanchen.gedit.hello;
 
 
-import com.github.conanchen.gedit.hello.controller.HelloGrpcClient;
+import com.github.conanchen.gedit.hello.client.HelloGrpcClient;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.client.RestTemplateBuilder;

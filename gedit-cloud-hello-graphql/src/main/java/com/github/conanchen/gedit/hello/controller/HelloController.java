@@ -1,5 +1,6 @@
 package com.github.conanchen.gedit.hello.controller;
 
+import com.github.conanchen.gedit.hello.client.HelloGrpcClient;
 import com.github.conanchen.gedit.hello.graphql.mongo.Customer;
 import com.github.conanchen.gedit.hello.graphql.mongo.CustomerRepository;
 import com.github.conanchen.gedit.hello.grpc.HelloReply;

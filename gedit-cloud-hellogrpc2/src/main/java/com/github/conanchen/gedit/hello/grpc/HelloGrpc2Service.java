@@ -13,8 +13,8 @@ import java.util.Date;
 import java.util.UUID;
 
 @GRpcService(interceptors = {LogInterceptor.class})
-public class HelloService extends HelloGrpc.HelloImplBase {
-    private static final Logger log = LoggerFactory.getLogger(HelloService.class);
+public class HelloGrpc2Service extends HelloGrpc.HelloImplBase {
+    private static final Logger log = LoggerFactory.getLogger(HelloGrpc2Service.class);
     private static final Gson gson = new Gson();
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 

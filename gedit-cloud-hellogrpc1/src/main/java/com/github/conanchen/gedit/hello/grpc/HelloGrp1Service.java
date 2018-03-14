@@ -1,7 +1,7 @@
 package com.github.conanchen.gedit.hello.grpc;
 
 import com.github.conanchen.gedit.common.grpc.Status;
-import com.github.conanchen.gedit.hello.controller.HelloGrpcClient;
+import com.github.conanchen.gedit.hello.client.HelloGrpc2Client;
 import com.google.gson.Gson;
 import io.grpc.stub.StreamObserver;
 import org.lognet.springboot.grpc.GRpcService;
@@ -9,25 +9,27 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
 
 @GRpcService(interceptors = {LogInterceptor.class})
-public class HelloService extends HelloGrpc.HelloImplBase {
-    private static final Logger log = LoggerFactory.getLogger(HelloService.class);
+public class HelloGrp1Service extends HelloGrpc.HelloImplBase {
+    private static final Logger log = LoggerFactory.getLogger(HelloGrp1Service.class);
     private static final Gson gson = new Gson();
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     @Autowired
-    private HelloGrpcClient helloGrpcClient;
+    private HelloGrpc2Client helloGrpc2Client;
     @Override
     public void sayHello(HelloRequest request, StreamObserver<HelloReply> responseObserver) {
-        helloGrpcClient.sayAsyncHello(request.getName(), new HelloGrpcClient.HelloCallback() {
+        helloGrpc2Client.sayAsyncHello(request.getName(), new HelloGrpc2Client.HelloCallback() {
             @Override
             public void onHelloReply(HelloReply helloReply) {
-                responseObserver.onNext(helloReply);
+                responseObserver.onNext(HelloReply.newBuilder(helloReply)
+                        .setMessage("hello grpc1," + helloReply.getMessage())
+
+                        .build());
                 responseObserver.onCompleted();
                 log.info("hello grpc1 invoked");
             }

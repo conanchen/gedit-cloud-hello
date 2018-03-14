@@ -1,4 +1,4 @@
-package com.github.conanchen.gedit.hello.controller;
+package com.github.conanchen.gedit.hello.client;
 
 import com.github.conanchen.gedit.common.grpc.Status;
 import com.github.conanchen.gedit.hello.grpc.HelloGrpc;
@@ -35,7 +35,7 @@ public class HelloGrpcClient {
 
     private ManagedChannel getManagedChannel() {
         return NettyChannelBuilder
-                .forAddress("127.0.0.1", 8900)
+                .forAddress("127.0.0.1", 8901)
                 .usePlaintext(true)
                 //                .keepAliveTime(60, TimeUnit.SECONDS)
                 .build();

@@ -1,19 +1,8 @@
-buildscript {
-    ext {
-        springBootVersion = '1.5.9.RELEASE'
-        gradleDockerVersion = "0.17.2"
-        GRPC_VERSION = '1.9.0'
-        GRPC_STARTER_VERSION = '2.1.5'
-    }
-    repositories {
-        mavenCentral()
-        maven { url "https://plugins.gradle.org/m2/" }
-    }
-    dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-        classpath("gradle.plugin.com.palantir.gradle.docker:gradle-docker:${gradleDockerVersion}")
-    }
-}
+group = 'conanchen'
+version '0.0.1-SNAPSHOT'
+
+ext { springBootVersion = '1.5.9.RELEASE' }
+
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
@@ -64,16 +53,9 @@ dependencies {
 //    compile("io.grpc:grpc-services:$GRPC_VERSION")
 //    compile("io.grpc:grpc-netty:$GRPC_VERSION")
 
-    compile("com.graphql-java:graphql-java-tools:4.3.0") {
+    compile("org.springframework.boot:spring-boot-starter-web") {
         exclude group: 'org.slf4j', module: 'log4j-over-slf4j'
     }
-    compile("com.graphql-java:graphql-spring-boot-starter:3.9.2") {
-        exclude group: 'org.slf4j', module: 'log4j-over-slf4j'
-    }
-    compile("com.graphql-java:graphiql-spring-boot-starter:3.9.2") {
-        exclude group: 'org.slf4j', module: 'log4j-over-slf4j'
-    }
-
 //    compile("org.springframework.boot:spring-boot-starter") {
 //        force true
 //        exclude group: 'org.slf4j', module: 'log4j-over-slf4j'
@@ -94,4 +76,7 @@ dependencies {
         exclude group: 'org.slf4j', module: 'log4j-over-slf4j'
     }
     testCompile('org.springframework.boot:spring-boot-starter-test')
+}
+dependencyManagement {
+    imports { mavenBom("org.springframework.boot:spring-boot-dependencies:${springBootVersion}") }
 }
