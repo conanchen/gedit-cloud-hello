@@ -10,7 +10,7 @@
 # graphql tutorial
 ## [Getting Started with GraphQL and Spring Boot](http://www.baeldung.com/spring-graphql)
 ## [Input object type as an argument for GraphQL mutations and queries](https://medium.com/graphql-mastery/json-as-an-argument-for-graphql-mutations-and-queries-3cd06d252a04)
-## [http://localhost:8088/graphiql](http://localhost:8088/graphiql)
+## [http://localhost:8888/graphiql](http://localhost:8888/graphiql)
 ### 查询列表
 #### step1：调用API
 ```graphql

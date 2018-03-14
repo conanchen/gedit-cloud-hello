@@ -28,7 +28,7 @@ group = 'conanchen'
 version = '0.0.1-SNAPSHOT'
 
 jar {
-    baseName = 'gedit-cloud-hello'
+    baseName = 'gedit-cloud-hellogrpc1'
 }
 
 // tag::task[]

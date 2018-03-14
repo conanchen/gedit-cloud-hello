@@ -28,7 +28,7 @@ group = 'conanchen'
 version = '0.0.1-SNAPSHOT'
 
 jar {
-    baseName = 'gedit-cloud-hello'
+    baseName = 'gedit-cloud-hellographql'
 }
 
 // tag::task[]
@@ -67,10 +67,10 @@ dependencies {
     compile("com.graphql-java:graphql-java-tools:4.3.0") {
         exclude group: 'org.slf4j', module: 'log4j-over-slf4j'
     }
-    compile("com.graphql-java:graphql-spring-boot-starter:3.9.2") {
+    compile("com.graphql-java:graphql-spring-boot-starter:3.10.0") {
         exclude group: 'org.slf4j', module: 'log4j-over-slf4j'
     }
-    compile("com.graphql-java:graphiql-spring-boot-starter:3.9.2") {
+    compile("com.graphql-java:graphiql-spring-boot-starter:3.10.0") {
         exclude group: 'org.slf4j', module: 'log4j-over-slf4j'
     }
 
