@@ -1,4 +1,5 @@
 buildscript {
+    apply {"$rootDir/version.gradle"}
     ext {
         springBootVersion = '1.5.9.RELEASE'
         gradleDockerVersion = "0.17.2"
