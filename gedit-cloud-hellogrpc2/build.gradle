@@ -1,8 +1,6 @@
 group = 'conanchen'
 version = '0.0.1-SNAPSHOT'
 
-ext { springBootVersion = '1.5.9.RELEASE' }
-
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
