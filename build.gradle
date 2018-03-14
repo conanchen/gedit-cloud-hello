@@ -1,11 +1,5 @@
 buildscript {
-    apply {"$rootDir/version.gradle"}
-    ext {
-        springBootVersion = '1.5.9.RELEASE'
-        gradleDockerVersion = "0.17.2"
-        GRPC_VERSION = '1.9.0'
-        GRPC_STARTER_VERSION = '2.1.5'
-    }
+    apply from: "$rootDir/blessedDeps.gradle"
     repositories {
         mavenCentral()
         maven { url "https://plugins.gradle.org/m2/" }
