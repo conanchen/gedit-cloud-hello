@@ -12,7 +12,7 @@ apply plugin: 'org.springframework.boot'
 sourceCompatibility = 1.8
 
 jar {
-    baseName = 'gedit-cloud-hello'
+    baseName = 'gedit-cloud-hellogrpc1'
 }
 
 repositories {

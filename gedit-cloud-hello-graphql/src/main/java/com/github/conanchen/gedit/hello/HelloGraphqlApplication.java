@@ -9,10 +9,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
-public class CloudHelloApplication {
+public class HelloGraphqlApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(CloudHelloApplication.class, args);
+        SpringApplication.run(HelloGraphqlApplication.class, args);
     }
 
     @Bean
