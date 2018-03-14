@@ -1,4 +1,4 @@
-package com.github.conanchen.gedit.hello.controller;
+package com.github.conanchen.gedit.hello.client;
 
 import com.github.conanchen.gedit.common.grpc.Status;
 import com.github.conanchen.gedit.hello.grpc.HelloGrpc;
@@ -13,13 +13,18 @@ import io.grpc.health.v1.HealthCheckResponse;
 import io.grpc.health.v1.HealthGrpc;
 import io.grpc.netty.NettyChannelBuilder;
 import io.grpc.stub.StreamObserver;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
+@Component
+public class HelloGrpc2Client {
 
-public class HelloGrpcClient {
+    private final static String TAG = HelloGrpc2Client.class.getSimpleName();
 
-    private final static String TAG = HelloGrpcClient.class.getSimpleName();
+    @Value("${hellogrpc.port}")
+    private int port;
 
     public interface HelloCallback {
         void onHelloReply(HelloReply helloReply);
@@ -27,7 +32,7 @@ public class HelloGrpcClient {
 
     private static final Gson gson = new Gson();
 
-    private static final Logger logger = Logger.getLogger(HelloGrpcClient.class.getName());
+    private static final Logger logger = Logger.getLogger(HelloGrpc2Client.class.getName());
     final HealthCheckRequest healthCheckRequest = HealthCheckRequest
             .newBuilder()
             .setService(HelloGrpc.getServiceDescriptor().getName())
@@ -35,7 +40,7 @@ public class HelloGrpcClient {
 
     private ManagedChannel getManagedChannel() {
         return NettyChannelBuilder
-                .forAddress("127.0.0.1", 8900)
+                .forAddress("127.0.0.1", port)
                 .usePlaintext(true)
                 //                .keepAliveTime(60, TimeUnit.SECONDS)
                 .build();

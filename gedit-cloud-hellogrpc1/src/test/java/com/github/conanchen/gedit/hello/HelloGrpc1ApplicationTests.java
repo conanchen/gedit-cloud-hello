@@ -1,6 +1,6 @@
 package com.github.conanchen.gedit.hello;
 
-import com.github.conanchen.gedit.hello.controller.HelloGrpcClient;
+import com.github.conanchen.gedit.hello.client.HelloGrpc2Client;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,11 +11,11 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest
 public class HelloGrpc1ApplicationTests {
 	@Autowired
-	private HelloGrpcClient helloGrpcClient;
+	private HelloGrpc2Client helloGrpc2Client;
 
 	@Test
 	public void helloClintTest(){
-//		helloGrpcClient.downloadOldHellos();
+//		helloGrpc2Client.downloadOldHellos();
 	}
 
 }

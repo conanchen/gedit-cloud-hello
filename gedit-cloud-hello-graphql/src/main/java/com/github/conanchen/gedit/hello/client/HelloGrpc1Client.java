@@ -1,4 +1,4 @@
-package com.github.conanchen.gedit.hello.controller;
+package com.github.conanchen.gedit.hello.client;
 
 import com.github.conanchen.gedit.common.grpc.Status;
 import com.github.conanchen.gedit.hello.grpc.HelloGrpc;
@@ -17,9 +17,9 @@ import io.grpc.stub.StreamObserver;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 
-public class HelloGrpcClient {
+public class HelloGrpc1Client {
 
-    private final static String TAG = HelloGrpcClient.class.getSimpleName();
+    private final static String TAG = HelloGrpc1Client.class.getSimpleName();
 
     public interface HelloCallback {
         void onHelloReply(HelloReply helloReply);
@@ -27,7 +27,7 @@ public class HelloGrpcClient {
 
     private static final Gson gson = new Gson();
 
-    private static final Logger logger = Logger.getLogger(HelloGrpcClient.class.getName());
+    private static final Logger logger = Logger.getLogger(HelloGrpc1Client.class.getName());
     final HealthCheckRequest healthCheckRequest = HealthCheckRequest
             .newBuilder()
             .setService(HelloGrpc.getServiceDescriptor().getName())
