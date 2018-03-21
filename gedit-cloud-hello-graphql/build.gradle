@@ -1,18 +1,16 @@
-group = 'conanchen'
-version '0.0.1-SNAPSHOT'
+plugins{
+    id 'java'
+    id 'eclipse'
+    id 'idea'
+    id 'org.springframework.boot'
+}
 
-ext { springBootVersion = '1.5.9.RELEASE' }
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
 
-
-apply plugin: 'java'
-apply plugin: 'eclipse'
-apply plugin: 'idea'
-apply plugin: 'org.springframework.boot'
-
-sourceCompatibility = 1.8
-
-jar {
-    baseName = 'gedit-cloud-hellographql'
+//编译JAVA文件时采用UTF-8
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
 }
 
 repositories {
@@ -29,6 +27,7 @@ configurations.all {
 dependencies {
 
     compile 'com.github.conanchen.gedit-api-grpc:grpc-java:master-SNAPSHOT'
+    compile 'com.github.conanchen.guoi-micro-apis:authcow-grpc-java:master-SNAPSHOT'
 
     compile("org.lognet:grpc-spring-boot-starter:$GRPC_STARTER_VERSION") {
         exclude group: 'org.slf4j', module: 'log4j-over-slf4j'

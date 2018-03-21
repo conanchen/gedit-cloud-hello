@@ -10,13 +10,6 @@ buildscript {
     }
 }
 
-apply plugin: 'java'
-apply plugin: 'eclipse'
-apply plugin: 'idea'
-apply plugin: 'org.springframework.boot'
-
-sourceCompatibility = 1.8
-
 // This is used as the docker image prefix (org)
 group = 'conanchen'
 version = '0.0.1-SNAPSHOT'
@@ -30,9 +23,4 @@ repositories {
 
 configurations.all {
     resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
-}
-
-
-dependencies {
-    testCompile('org.springframework.boot:spring-boot-starter-test')
 }
