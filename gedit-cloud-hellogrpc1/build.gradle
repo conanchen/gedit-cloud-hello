@@ -29,26 +29,12 @@ dependencies {
 
     compile("org.lognet:grpc-spring-boot-starter:$GRPC_STARTER_VERSION") {
         exclude group: 'org.slf4j', module: 'log4j-over-slf4j'
-//        exclude group: 'io.grpc', module: 'grpc-protobuf'
-//        exclude group: 'io.grpc', module: 'grpc-services'
-//        exclude group: 'io.grpc', module: 'grpc-netty'
     }
 
-//    compile("io.grpc:grpc-protobuf:$GRPC_VERSION")
-//    compile("io.grpc:grpc-services:$GRPC_VERSION")
-//    compile("io.grpc:grpc-netty:$GRPC_VERSION")
 
     compile("org.springframework.boot:spring-boot-starter-web") {
         exclude group: 'org.slf4j', module: 'log4j-over-slf4j'
     }
-//    compile("org.springframework.boot:spring-boot-starter") {
-//        force true
-//        exclude group: 'org.slf4j', module: 'log4j-over-slf4j'
-//    }
-//    compile("org.springframework.boot:spring-boot-starter-logging") {
-//        force true
-//        exclude group: 'org.slf4j', module: 'log4j-over-slf4j'
-//    }
     compile("org.springframework.boot:spring-boot-starter-actuator") {
         exclude group: 'org.slf4j', module: 'log4j-over-slf4j'
     }

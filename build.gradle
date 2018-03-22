@@ -1,3 +1,6 @@
+group = 'guoi-gateway-station'
+version = '0.0.1-SNAPSHOT'
+
 buildscript {
     apply from: "$rootDir/blessedDeps.gradle"
     repositories {
@@ -6,15 +9,48 @@ buildscript {
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-        //classpath("gradle.plugin.com.palantir.gradle.docker:gradle-docker:${gradleDockerVersion}")
     }
 }
 
-// This is used as the docker image prefix (org)
-group = 'conanchen'
-version = '0.0.1-SNAPSHOT'
+allprojects {
+    apply plugin: 'java'
+    group = '${group}'
+    version = '${version}'
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
 
+    //编译JAVA文件时采用UTF-8
+    tasks.withType(Javadoc) {
+        options.addStringOption('Xdoclint:none', '-quiet')
+        options.addStringOption('encoding', 'UTF-8')
+        options.addStringOption('charSet', 'UTF-8')
+    }
 
+    tasks.withType(JavaCompile) {
+        options.encoding = "UTF-8"
+    }
+}
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'maven'
+
+    task sourcesJar(type: Jar, dependsOn: classes) {
+        classifier = 'sources'
+        from sourceSets.main.allSource
+    }
+
+    task javadocJar(type: Jar, dependsOn: javadoc) {
+        classifier = 'javadoc'
+        from javadoc.destinationDir
+    }
+
+    artifacts {
+        archives sourcesJar
+        archives javadocJar
+    }
+
+}
 repositories {
     mavenCentral()
     jcenter()
@@ -24,3 +60,7 @@ repositories {
 configurations.all {
     resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
 }
+
+project.logger.lifecycle("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+project.logger.lifecycle("~~~~~~~~~~~~~~~~~ROOT BUILD DONE!~~~~~~~~~~~~~~~~~~");
+project.logger.lifecycle("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
